@@ -181,19 +181,33 @@ console.log(filterByWord(originalFlavors, "Chocolate"));
 /* STRETCH 1: Write a function that returns the average number of words in an array. You should be able to use this function for any array, but can test with originalFlavors.
 
 Your function should accept: 
-
+-
 (1) an array
 
 and should return the average number of words per item in the array. 
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength( /*code here*/ ) {
+function getAverageWordLength(arr) {
+    let totalWordCount = 0;
+    let newArr = []; // An array of arrays. 
+    // We will split each element of the input array into an array of its words. For example, "Banana Nut Fudge" would be turned into the array ["Banana", "Nut", "Fudge"]. We will then push this array on to our newArr. After that, we will be able to add the length of each child array to our totalWordCount. 
 
-    /*code here*/
+    // avg = count / entries
+    // Therefore, we must count how many words is in each flavor, and then we can divide that total by the amount of flavors we have (length of the input arr)
 
+    for (i = 0; i < arr.length; i++) {
+        newArr.push(arr[i].split(" "));
+    }
+
+    for (i = 0; i < newArr.length; i++) {
+        totalWordCount += newArr[i].length;
+    }
+
+    return totalWordCount / arr.length;
 }
 
+console.log(getAverageWordLength(originalFlavors));
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
 
